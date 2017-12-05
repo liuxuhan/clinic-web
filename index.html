@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Hello, world!</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link href="./open-iconic-master/font/css/open-iconic-bootstrap.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">Platform</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <!--   <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+            </ul> -->
+            <!--    <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form> -->
+        </div>
+    </nav>
+    <div class="container-fluid doc-layout">
+        <div class="row">
+            <div class="col-2">
+                <div class="left-panel">
+                    <div class="left-panel-toolbox">
+                        <div class="right-inner-addon">
+                            <i class="material-icons">search</i>
+                            <input id="search-patient-box" type="search" class="form-control" placeholder="Search" />
+                        </div>
+                        <div class="toolbox-filter">
+                            <div class="toolbox-filter-all">
+                                <div class="btn-group btn-group-sm" data-toggle="buttons">
+                                    <label class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+                                        <input type="radio" name="options" id="filtername1" autocomplete="off"><i class="material-icons">warning</i></label>
+                                    <label class="btn btn-outline-success">
+                                        <input type="radio" name="options" id="filtername2" autocomplete="off"><i class="material-icons">star</i></label>
+                                    <label class="btn btn-outline-info">
+                                        <input type="radio" name="options" id="filtername3" autocomplete="off"><i class="material-icons">mood</i></label>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-secondary btn-lg btn-block btn-sm" style="margin-top: 10px" data-toggle="modal" data-target="#filterModal">Search with New Filters</button>
+                        </div>
+                    </div>
+                    <div class="alert text-white bg-dark list-title" role="alert">
+                        Patient List
+                    </div>
+                    <div class="left-panel-list">
+                        <div class="list-group" id="patient-list">
+                        </div>
+                    </div>
+                    <div class="alert text-white bg-dark list-title" role="alert">
+                        Dash Board
+                    </div>
+                </div>
+            </div>
+            <div class="col-10">
+                <div class="right-panel">
+                    dasdasd
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="filterModalLabel">Search with Filter</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row filter-row">
+                            <div class="col-sm">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="age_addon">Age</span>
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="ageOp">
+                                            >
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" value='>'>></a>
+                                            <a class="dropdown-item" value='='>=</a>
+                                            <a class="dropdown-item" value='<'>
+                                                <</a>
+                                        </div>
+                                    </div>
+                                    <input type="number" id="ageInput" class="form-control" aria-label="Text input with dropdown button">
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="gender_addon">Gender</span>
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="genderInput">Male</button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" value="Male">Male</a>
+                                            <a class="dropdown-item" value="Female">Female</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="gender_addon">Type</span>
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="typeInput">1</button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" value="1">1</a>
+                                            <a class="dropdown-item" value="2">2</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row filter-row">
+                            <div class="col-sm">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="weight_addon">Weight</span>
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="weightOp">
+                                            >
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" value='>'>></a>
+                                            <a class="dropdown-item" value='='>=</a>
+                                            <a class="dropdown-item" value='<'>
+                                                <</a>
+                                        </div>
+                                    </div>
+                                    <input type="number" class="form-control" id="weightInput" aria-label="Text input with dropdown button">
+                                    <span class="input-group-addon" id="kg_addon">kg</span>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="diagnose_addon">Diagnose</span>
+                                    <input type="number" class="form-control" id="diagnoseInput" aria-label="Text input with dropdown button">
+                                    <span class="input-group-addon" id="time_addon">time(s)</span>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="duration_addon">Duration</span>
+                                    <input type="number" class="form-control" id="durationInput" aria-label="Text input with dropdown button">
+                                    <span class="input-group-addon" id="day_addon">day(s)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row filter-row">
+                            <div class="col-sm">
+                                <p>
+                                    <button class="btn btn-info btn-sm btn-block" type="button" data-toggle="collapse" data-target="#collapseIcon" aria-expanded="false" aria-controls="collapseIcon">
+                                        Select Icon for filter
+                                    </button>
+                                </p>
+                                <div class="collapse" id="collapseIcon">
+                                    <div class="card card-body">
+                                        <div class="row">
+                                            <div class="col-8 icon-group">
+                                                <div data-toggle="buttons">
+                                                    <label class="btn btn-outline-dark icon">
+                                                        <input type="radio" name="options" id="stars" autocomplete="off"><i class="material-icons">stars</i>
+                                                    </label>
+                                                    <label class="btn btn-outline-dark icon">
+                                                        <input type="radio" name="options" id="face" autocomplete="off"><i class="material-icons">face</i>
+                                                    </label>
+                                                    <label class="btn btn-outline-dark icon">
+                                                        <input type="radio" name="options" id="looks_one" autocomplete="off"><i class="material-icons">looks_one</i>
+                                                    </label>
+                                                    <label class="btn btn-outline-dark icon">
+                                                        <input type="radio" name="options" id="looks_two" autocomplete="off"><i class="material-icons">looks_two</i>
+                                                    </label>
+                                                    <label class="btn btn-outline-dark icon">
+                                                        <input type="radio" name="options" id="looks_three" autocomplete="off"><i class="material-icons">looks_3</i>
+                                                    </label>
+                                                    <label class="btn btn-outline-dark icon">
+                                                        <input type="radio" name="options" id="looks_four" autocomplete="off"><i class="material-icons">looks_4</i>
+                                                    </label>
+                                                    <label class="btn btn-outline-dark icon">
+                                                        <input type="radio" name="options" id="looks_five" autocomplete="off"><i class="material-icons">looks_5</i>
+                                                    </label>
+                                                    <label class="btn btn-outline-dark icon">
+                                                        <input type="radio" name="options" id="child_care" autocomplete="off"><i class="material-icons">child_care</i>
+                                                    </label>
+                                                    <label class="btn btn-outline-dark icon">
+                                                        <input type="radio" name="options" id="help" autocomplete="off"><i class="material-icons">help</i>
+                                                    </label>
+                                                    <label class="btn btn-outline-dark icon">
+                                                        <input type="radio" name="options" id="sentiment_very_dissatisfied" autocomplete="off"><i class="material-icons">sentiment_very_dissatisfied</i>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon" id="icon-color-addon">Color</span>
+                                                    <select class="custom-select form-control" id="iconColor">
+                                                        <option selected value="dark">Black</option>
+                                                        <option value="danger">Red</option>
+                                                        <option value="primary">Blue</option>
+                                                        <option value="success">Green</option>
+                                                        <option value="warning">Yellow</option>
+                                                        <option value="secondary">Grey</option>
+                                                    </select>
+                                                </div>
+                                                <div class="input-group" style="margin-top: 4px">
+                                                    <span class="input-group-addon" id="name-addon">Name</span>
+                                                    <input type="text" class="form-control" placeholder="Filter Name" aria-label="Username" aria-describedby="basic-addon1">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success" id="saveFilterBtn">Save Filter</button>
+                        <button type="button" class="btn btn-primary" id="searchwFilterBtn">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./js/index.js"></script>
+</body>
+
+</html>
