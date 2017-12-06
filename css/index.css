@@ -103,6 +103,11 @@ div.right-panel div.tab-content {
 }
 
 
+
+
+
+
+
 /* css for inbox */
 
 .col-name {
@@ -130,9 +135,48 @@ div.right-panel div.tab-content {
     width: 15%;
 }
 
-.col-button .btn:focus,
-.btn:active,
-.active {
+.btn:hover:focus {
     outline: none !important;
     box-shadow: none !important;
+}
+
+table.log-table td {
+    height: 80px;
+}
+
+table.log-table {
+    font-size: small;
+    width: 1500px;
+}
+
+div.table-scroll {
+    overflow-x: scroll;
+    overflow-y: scroll;
+    height: inherit;
+}
+
+th.log-table-1 {
+    width: 10%;
+}
+
+th.log-table-2 {
+    width: 22.5%;
+}
+
+th.log-table-3 {
+    width: 22.5%;
+}
+
+th.log-table-4 {
+    width: 22.5%;
+}
+
+th.log-table-5 {
+    width: 22.5%;
+}
+tbody.inbox-table-body .btn{
+    margin-right: 4px;
+}
+div#nav-inbox{
+    height: inherit;
 }

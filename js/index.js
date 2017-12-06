@@ -76,17 +76,23 @@ var patients_ = [{
 
 var element_;
 
-document.addEventListener('click', function (e) {
-    if (document.activeElement.toString() == '[object HTMLButtonElement]') {
-        $('body').click()
-    }
-});
-$(function () {
+$(function() {
+    displayPatientList(patients_);
+    loadInboxItems();
     intElements();
     bindEvent();
-    $('[data-toggle="tooltip"]').tooltip();
-    displayPatientList(patients_);
 });
+
+function loadInboxItems() {
+    var item ='';
+        for (var i = 1; i < 20; i++) {
+            item += '<tr><td class="col-subject">subject</td><td class="col-body">body</td>' +
+                '<td class="col-button"><button type="button" class="btn btn-secondary btn-sm mail-delete-btn"><i class="material-icons">delete</i>' +
+                '</button><button type="button" class="btn btn-secondary btn-sm mail-star-btn"><i class="material-icons">star</i>' +
+                '</button></td><td class="col-label">label</td></tr>';
+        }
+    $('tbody.inbox-table-body').html(item);
+}
 
 function intElements() {
     element_ = {
@@ -99,47 +105,60 @@ function intElements() {
         sidemenu: {
             $allFilters: $('div#all-filters')
         },
-        $filterModal: $('#filterModal')
+        $filterModal: $('#filterModal'),
+        inbox: {
+            $starBtn: $('button.mail-star-btn'),
+            $deleteBtn: $('button.mail-delete-btn')
+        }
     };
 }
 
 function bindEvent() {
-    $('#search-patient-box').on('input', function () {
+    $('#search-patient-box').on('input', function() {
         var list_ = onSearchPatientBoxChange(this);
         list_ = this.value === "" ? patients_ : list_;
         displayPatientList(list_);
     });
 
-    $('.dropdown-item').click(function () {
+    $('.dropdown-item').click(function() {
         updateDropdownButton(this);
     });
 
-    $('#iconColor').on('change', function () {
+    $('#iconColor').on('change', function() {
         changeIconsColor(this);
     })
 
-    element_.$filterModal.on('hidden.bs.modal', function (e) {
+    element_.$filterModal.on('hidden.bs.modal', function(e) {
         resetFilterForm();
     })
-    $('div.toolbox-filter-all').find('label').click(function (event) {
+    $('div.toolbox-filter-all').find('label').click(function(event) {
         onExistingFilterClick(this, event);
     });
-    element_.filterForm.$saveFilterBtn.click(function () {
+    element_.filterForm.$saveFilterBtn.click(function() {
         onSaveFilterBtnClick(this);
     });
-    element_.filterForm.$filterName.on('input', function () {
+    element_.filterForm.$filterName.on('input', function() {
         validFilterSaveBtn(false);
     });
-    element_.filterForm.$iconGroup.find('label').click(function () {
+    element_.filterForm.$iconGroup.find('label').click(function() {
         validFilterSaveBtn(true);
     });
-    $('button.mail-star-btn').on('click',function(){
+    element_.inbox.$starBtn.on('click', function() {
         onInboxItemStarClick(this);
     });
+    element_.inbox.$deleteBtn.on('click', function() {
+        onInboxItemDeleteClick(this);
+    });
 }
-function onInboxItemStarClick(el){
-    // $(el).toggleClass('active');
+
+function onInboxItemStarClick(el) {
+    $(el).toggleClass('btn-secondary').toggleClass('btn-danger');
 }
+
+function onInboxItemDeleteClick(el) {
+    $(el).parents('tr').remove();
+}
+
 function onSaveFilterBtnClick(el) {
     var selectedIcon = element_.filterForm.$iconGroup.find('label.active')[0];
     var cln = selectedIcon.cloneNode(true);
@@ -147,7 +166,7 @@ function onSaveFilterBtnClick(el) {
     var iconName = cln.getElementsByTagName("input")[0];
     iconName.setAttribute('id', filterName);
     $(cln).removeClass('icon active');
-    $(cln).click(function (event) {
+    $(cln).click(function(event) {
         onExistingFilterClick(this, event);
     });
     appendIconToIconGroup(cln);
@@ -155,7 +174,7 @@ function onSaveFilterBtnClick(el) {
 }
 
 function appendIconToIconGroup(el) {
-    if (typeof (cln) === 'string') {
+    if (typeof(cln) === 'string') {
 
     }
     element_.sidemenu.$allFilters.append(el);
@@ -208,7 +227,7 @@ function updateDropdownButton(el) {
 function onSearchPatientBoxChange(el) {
     var input = el.value;
     var displayList = [];
-    patients_.forEach(function (patient) {
+    patients_.forEach(function(patient) {
         if (patient.id === input || patient.name.includes(input)) {
             displayList.push(patient);
         }
@@ -224,7 +243,7 @@ function onFilterClick(filter) {
 function displayPatientList(list) {
     $('#patient-list').empty();
     var html = '';
-    list.forEach(function (patient) {
+    list.forEach(function(patient) {
         var statusClass = '';
         if (patient.status === 'danger') {
             statusClass = 'list-group-item-danger';
