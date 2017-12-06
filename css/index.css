@@ -2,7 +2,11 @@ html,
 body {
     margin: 0;
     height: 100%;
-    overflow: hidden
+    overflow: hidden;
+}
+
+.left-panel-list::-webkit-scrollbar {
+    display: none;
 }
 
 .doc-layout {
@@ -23,13 +27,13 @@ body {
 }
 
 .left-panel-toolbox {
-    height: 20%;
+    height: 25%;
     padding-top: 10px;
 }
 
 .left-panel-list {
     overflow-y: scroll;
-    height: 61%;
+    height: 55%;
     margin-left: -15px;
     margin-right: -15px;
 }
@@ -87,4 +91,48 @@ body {
 .icon-group label.btn {
     padding: 0.25rem 0.25rem;
     margin: 0 4px;
+}
+
+div.right-panel {
+    height: inherit;
+    margin: 10px -10px 0 -20px;
+}
+
+div.right-panel div.tab-content {
+    height: inherit;
+}
+
+
+/* css for inbox */
+
+.col-name {
+    width: 20%;
+}
+
+.col-subject {
+    width: 25%;
+}
+
+.col-body {
+    width: 25%;
+}
+
+.col-button {
+    width: 15%;
+    padding: 0.5rem !important;
+}
+
+.col-button button.btn {
+    padding: 0;
+}
+
+.col-label {
+    width: 15%;
+}
+
+.col-button .btn:focus,
+.btn:active,
+.active {
+    outline: none !important;
+    box-shadow: none !important;
 }
