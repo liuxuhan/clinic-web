@@ -16,7 +16,8 @@
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         <a class="navbar-brand" href="#">Platform</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
+            aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
@@ -81,103 +82,315 @@
                         <div class="list-group" id="patient-list">
                         </div>
                     </div>
-                    <div class="alert text-white bg-dark list-title" role="alert">
+                    <div class="alert text-white bg-dark list-title" role="alert" id="dashboard-btn">
                         Dash Board
                     </div>
                 </div>
             </div>
             <div class="col-9">
                 <div class="right-panel">
-                    <nav class="nav nav-tabs" id="patientTab" role="tablist">
-                        <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="false">Home</a>
-                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a>
-                        <a class="nav-item nav-link active" id="nav-daily-log-tab" data-toggle="tab" href="#nav-daily-log" role="tab" aria-controls="nav-daily-log" aria-selected="false">Daily Log</a>
-                        <a class="nav-item nav-link" id="nav-inbox-tab" data-toggle="tab" href="#nav-inbox" role="tab" aria-controls="nav-inbox" aria-selected="true">Inbox</a>
-                    </nav>
-                    <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">...</div>
-                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
-                        <div class="tab-pane fade" id="nav-inbox" role="tabpanel" aria-labelledby="nav-inbox-tab">
-                            <div class="table-scroll">
-                                <table class="table table-striped" id="inbox-table">
-                                    <tbody class="inbox-table-body">
-                                    </tbody>
-                                </table>
+                    <div class="patient-page hidden">
+                        <nav class="nav nav-tabs" id="patientTab" role="tablist">
+                            <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="false">Home</a>
+                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile"
+                                aria-selected="false">Profile</a>
+                            <a class="nav-item nav-link active" id="nav-daily-log-tab" data-toggle="tab" href="#nav-daily-log" role="tab" aria-controls="nav-daily-log"
+                                aria-selected="false">Daily Log</a>
+                            <a class="nav-item nav-link" id="nav-inbox-tab" data-toggle="tab" href="#nav-inbox" role="tab" aria-controls="nav-inbox"
+                                aria-selected="true">Inbox</a>
+                        </nav>
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">...</div>
+                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+                            <div class="tab-pane fade" id="nav-inbox" role="tabpanel" aria-labelledby="nav-inbox-tab">
+                                <div class="table-scroll">
+                                    <table class="table table-striped" id="inbox-table">
+                                        <tbody class="inbox-table-body">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade show active" id="nav-daily-log" role="tabpanel" aria-labelledby="nav-daily-log-tab">
+                                <div class="table-scroll">
+                                    <table class="table log-table table-bordered">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col" class="log-table-1">Date</th>
+                                                <th scope="col" colspan="7" class="log-table-2 bg-primary">Breakfast</th>
+                                                <th scope="col" colspan="7" class="log-table-3 bg-success">Lunch</th>
+                                                <th scope="col" colspan="6" class="log-table-4 bg-warning">Dinner</th>
+                                                <th scope="col" colspan="5" class="log-table-4 bg-danger">Bedtime</th>
+                                            </tr>
+                                            <tr>
+                                                <td class="log-table-1 table-active"></td>
+                                                <td class="log-table-2 table-primary">Time</td>
+                                                <td class="log-table-2 table-primary">Sugar (before)</td>
+                                                <td class="log-table-2 table-primary">Insulin (before)</td>
+                                                <td class="log-table-2 table-primary">Breakfast</td>
+                                                <td class="log-table-2 table-primary">Time</td>
+                                                <td class="log-table-2 table-primary">Sugar (2hr after)</td>
+                                                <td class="log-table-2 table-primary">Snack</td>
+                                                <td class="log-table-2 table-success">Time</td>
+                                                <td class="log-table-2 table-success">Sugar (before)</td>
+                                                <td class="log-table-2 table-success">Insulin (before)</td>
+                                                <td class="log-table-2 table-success">Lunch</td>
+                                                <td class="log-table-2 table-success">Time</td>
+                                                <td class="log-table-2 table-success">Sugar (2hr after)</td>
+                                                <td class="log-table-2 table-success">Snack</td>
+                                                <td class="log-table-2 table-warning">Time</td>
+                                                <td class="log-table-2 table-warning">Sugar (before)</td>
+                                                <td class="log-table-2 table-warning">Insulin (before)</td>
+                                                <td class="log-table-2 table-warning">Dinner</td>
+                                                <td class="log-table-2 table-warning">Time</td>
+                                                <td class="log-table-2 table-warning">Sugar (2hr after)</td>
+                                                <td class="log-table-2 table-danger">Time</td>
+                                                <td class="log-table-4 table-danger">Sugar</td>
+                                                <td class="log-table-4 table-danger">Insulin</td>
+                                                <td class="log-table-4 table-danger">Supper</td>
+                                                <td class="log-table-4 table-danger">Sugar (3am)</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">
+                                                    <span>12-4</span>(Mon)</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <span>12-5</span>(Tue)</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <span>12-6</span>(Wed)</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <span>12-7</span>(Thur)</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <span>12-8</span>(Fri)</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <span>12-9</span>(Sat)</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <span>12-10</span>(Sun)</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <span>12-10</span>(Sun)</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade show active" id="nav-daily-log" role="tabpanel" aria-labelledby="nav-daily-log-tab">
-                            <div class="table-scroll">
-                                <table class="table log-table">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th scope="col" class="log-table-1"></th>
-                                            <th scope="col" class="log-table-2 bg-primary">Breakfast</th>
-                                            <th scope="col" class="log-table-3 bg-success">Lunch</th>
-                                            <th scope="col" class="log-table-4 bg-warning">Dinner</th>
-                                            <th scope="col" class="log-table-4 bg-danger">Bedtime</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">
-                                                <span>12-4</span>(Mon)</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <span>12-5</span>(Tue)</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <span>12-6</span>(Wed)</th>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <span>12-7</span>(Thur)</th>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <span>12-8</span>(Fri)</th>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <span>12-9</span>(Sat)</th>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <span>12-10</span>(Sun)</th>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="dashboard">
+                        This is dashboard
                     </div>
                 </div>
             </div>
@@ -198,7 +411,8 @@
                                 <div class="input-group">
                                     <span class="input-group-addon" id="age_addon">Age</span>
                                     <div class="input-group-btn">
-                                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="ageOp">
+                                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                            id="ageOp">
                                             >
                                         </button>
                                         <div class="dropdown-menu">
@@ -215,7 +429,8 @@
                                 <div class="input-group">
                                     <span class="input-group-addon" id="gender_addon">Gender</span>
                                     <div class="input-group-btn">
-                                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="genderInput">Male</button>
+                                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                            id="genderInput">Male</button>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" value="Male">Male</a>
                                             <a class="dropdown-item" value="Female">Female</a>
@@ -227,7 +442,8 @@
                                 <div class="input-group">
                                     <span class="input-group-addon" id="gender_addon">Type</span>
                                     <div class="input-group-btn">
-                                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="typeInput">1</button>
+                                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                            id="typeInput">1</button>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" value="1">1</a>
                                             <a class="dropdown-item" value="2">2</a>
@@ -241,7 +457,8 @@
                                 <div class="input-group">
                                     <span class="input-group-addon" id="weight_addon">Weight</span>
                                     <div class="input-group-btn">
-                                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="weightOp">
+                                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                            id="weightOp">
                                             >
                                         </button>
                                         <div class="dropdown-menu">
@@ -273,7 +490,8 @@
                         <div class="row filter-row">
                             <div class="col-sm">
                                 <p>
-                                    <button class="btn btn-info btn-sm btn-block" type="button" data-toggle="collapse" data-target="#collapseIcon" aria-expanded="false" aria-controls="collapseIcon">
+                                    <button class="btn btn-info btn-sm btn-block" type="button" data-toggle="collapse" data-target="#collapseIcon" aria-expanded="false"
+                                        aria-controls="collapseIcon">
                                         Select Icon for filter
                                     </button>
                                 </p>
@@ -358,10 +576,13 @@
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
     <!-- <script type="text/javascript" src="./js/bootstrap.bundle.min.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
     <script type="text/javascript" src="./js/index.js"></script>
 </body>
 

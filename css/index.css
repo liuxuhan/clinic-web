@@ -5,6 +5,10 @@ body {
     overflow: hidden;
 }
 
+.hidden{
+    display: none;
+}
+
 .left-panel-list::-webkit-scrollbar {
     display: none;
 }
@@ -98,7 +102,7 @@ div.right-panel {
     margin: 10px -10px 0 -20px;
 }
 
-div.right-panel div.tab-content {
+div.right-panel div.tab-content, div.patient-page, div.dashboard {
     height: inherit;
 }
 
@@ -109,8 +113,7 @@ div.right-panel div.tab-content {
 
 
 /* css for inbox */
-
-.col-name {
+.col-time {
     width: 20%;
 }
 
@@ -140,39 +143,39 @@ div.right-panel div.tab-content {
     box-shadow: none !important;
 }
 
-table.log-table td {
+table.log-table tbody td {
     height: 80px;
 }
 
 table.log-table {
     font-size: small;
-    width: 1500px;
+    width: 2000px;
 }
-
 div.table-scroll {
     overflow-x: scroll;
     overflow-y: scroll;
-    height: inherit;
+    height: 640px;
 }
 
+/* daily log*/
 th.log-table-1 {
-    width: 10%;
+    width: 6%;
 }
 
 th.log-table-2 {
-    width: 22.5%;
+    width: 26%;
 }
 
 th.log-table-3 {
-    width: 22.5%;
+    width: 26%;
 }
 
 th.log-table-4 {
-    width: 22.5%;
+    width: 26%;
 }
 
 th.log-table-5 {
-    width: 22.5%;
+    width: 16%;
 }
 tbody.inbox-table-body .btn{
     margin-right: 4px;

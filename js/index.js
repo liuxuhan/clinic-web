@@ -76,7 +76,7 @@ var patients_ = [{
 
 var element_;
 
-$(function() {
+$(function () {
     displayPatientList(patients_);
     loadInboxItems();
     intElements();
@@ -84,13 +84,13 @@ $(function() {
 });
 
 function loadInboxItems() {
-    var item ='';
-        for (var i = 1; i < 20; i++) {
-            item += '<tr><td class="col-subject">subject</td><td class="col-body">body</td>' +
-                '<td class="col-button"><button type="button" class="btn btn-secondary btn-sm mail-delete-btn"><i class="material-icons">delete</i>' +
-                '</button><button type="button" class="btn btn-secondary btn-sm mail-star-btn"><i class="material-icons">star</i>' +
-                '</button></td><td class="col-label">label</td></tr>';
-        }
+    var item = '';
+    for (var i = 1; i < 20; i++) {
+        item += '<tr><td class="col-time">12:10PM</td><td class="col-subject">subject</td><td class="col-body">body</td>' +
+            '<td class="col-button"><button type="button" class="btn btn-secondary btn-sm mail-delete-btn"><i class="material-icons">delete</i>' +
+            '</button><button type="button" class="btn btn-secondary btn-sm mail-star-btn"><i class="material-icons">star</i>' +
+            '</button></td><td class="col-label">label</td></tr>';
+    }
     $('tbody.inbox-table-body').html(item);
 }
 
@@ -103,52 +103,71 @@ function intElements() {
             $iconColorSelect: $('select#iconColor')
         },
         sidemenu: {
-            $allFilters: $('div#all-filters')
+            $allFilters: $('div#all-filters'),
+            $listItem: $('a.patient-list-item'),
+            $dashboardBtn: $('div#dashboard-btn')
         },
         $filterModal: $('#filterModal'),
         inbox: {
             $starBtn: $('button.mail-star-btn'),
             $deleteBtn: $('button.mail-delete-btn')
-        }
+        },
+        dashboard: $('div.dashboard'),
+        patientPage: $('div.patient-page')
     };
 }
 
 function bindEvent() {
-    $('#search-patient-box').on('input', function() {
+    $('#search-patient-box').on('input', function () {
         var list_ = onSearchPatientBoxChange(this);
         list_ = this.value === "" ? patients_ : list_;
         displayPatientList(list_);
     });
 
-    $('.dropdown-item').click(function() {
+    $('.dropdown-item').click(function () {
         updateDropdownButton(this);
     });
 
-    $('#iconColor').on('change', function() {
+    $('#iconColor').on('change', function () {
         changeIconsColor(this);
     })
 
-    element_.$filterModal.on('hidden.bs.modal', function(e) {
+    element_.$filterModal.on('hidden.bs.modal', function (e) {
         resetFilterForm();
     })
-    $('div.toolbox-filter-all').find('label').click(function(event) {
+    $('div.toolbox-filter-all').find('label').click(function (event) {
         onExistingFilterClick(this, event);
     });
-    element_.filterForm.$saveFilterBtn.click(function() {
+    element_.filterForm.$saveFilterBtn.click(function () {
         onSaveFilterBtnClick(this);
     });
-    element_.filterForm.$filterName.on('input', function() {
+    element_.filterForm.$filterName.on('input', function () {
         validFilterSaveBtn(false);
     });
-    element_.filterForm.$iconGroup.find('label').click(function() {
+    element_.filterForm.$iconGroup.find('label').click(function () {
         validFilterSaveBtn(true);
     });
-    element_.inbox.$starBtn.on('click', function() {
+    element_.inbox.$starBtn.on('click', function () {
         onInboxItemStarClick(this);
     });
-    element_.inbox.$deleteBtn.on('click', function() {
+    element_.inbox.$deleteBtn.on('click', function () {
         onInboxItemDeleteClick(this);
     });
+    element_.sidemenu.$listItem.on('click',function(){
+        onPatientListItemClick(this);
+    });
+    element_.sidemenu.$dashboardBtn.on('click',function(){
+        onDashBoardBtnClick(this);
+    })
+}
+function onPatientListItemClick(el){
+    element_.dashboard.addClass('hidden');
+    element_.patientPage.removeClass('hidden');
+}
+
+function onDashBoardBtnClick(el){
+    element_.patientPage.addClass('hidden');
+    element_.dashboard.removeClass('hidden');
 }
 
 function onInboxItemStarClick(el) {
@@ -166,7 +185,7 @@ function onSaveFilterBtnClick(el) {
     var iconName = cln.getElementsByTagName("input")[0];
     iconName.setAttribute('id', filterName);
     $(cln).removeClass('icon active');
-    $(cln).click(function(event) {
+    $(cln).click(function (event) {
         onExistingFilterClick(this, event);
     });
     appendIconToIconGroup(cln);
@@ -174,7 +193,7 @@ function onSaveFilterBtnClick(el) {
 }
 
 function appendIconToIconGroup(el) {
-    if (typeof(cln) === 'string') {
+    if (typeof (cln) === 'string') {
 
     }
     element_.sidemenu.$allFilters.append(el);
@@ -227,7 +246,7 @@ function updateDropdownButton(el) {
 function onSearchPatientBoxChange(el) {
     var input = el.value;
     var displayList = [];
-    patients_.forEach(function(patient) {
+    patients_.forEach(function (patient) {
         if (patient.id === input || patient.name.includes(input)) {
             displayList.push(patient);
         }
@@ -243,14 +262,14 @@ function onFilterClick(filter) {
 function displayPatientList(list) {
     $('#patient-list').empty();
     var html = '';
-    list.forEach(function(patient) {
+    list.forEach(function (patient) {
         var statusClass = '';
         if (patient.status === 'danger') {
             statusClass = 'list-group-item-danger';
         } else if (patient.status === 'warning') {
             statusClass = 'list-group-item-warning';
         }
-        html += '<a data-toggle="list" href="#" class="list-group-item list-group-item-action ' + statusClass + '" id="patient-' + patient.id + '">' + patient.name + '(' + patient.id + ')</a>';
+        html += '<a data-toggle="list" href="#" class="patient-list-item list-group-item list-group-item-action ' + statusClass + '" id="patient-' + patient.id + '">' + patient.name + '(' + patient.id + ')</a>';
     })
     $('#patient-list').html(html);
 }
